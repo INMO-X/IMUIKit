@@ -40,13 +40,15 @@ showSheet(in: view, title: "标题", message: nil, confirm: "确认", cancel: "�
 | `IMBaseNavigationController` | 默认返回按钮，图标是 bundle 里的 `ArrowLeft` |
 | `IMBaseTabBarController` | Tab 根控制器 |
 
+页面基类、列表 cell / section 在 `deinit` 里调用 `IMLogger.shared.logConsole`。只有 `IMLogger.shared.enable == true` 时才会打出。这段不靠 `#if DEBUG`，Release 静态库里仍然在。
+
 ## 列表
 
 用 Data 描述行，View 里 `bind(to:)` 渲染。
 
 - Table：`IMBaseTableCellData` / `IMBaseTableCellView`，信息行 `IMInfoTableCellData`，空态 `IMBlankTableCellData`
 - Collection：同名 Collection 版本
-- 注册：`tableView.im.registerCell` / `dequeueReusableCell`，复用标识用类型名
+- 注册：`tableView.im.registerCell` / `dequeueReusableCell`，复用标识用类型名。实现在 `Classes/List/UIReusable+IM.swift`
 
 下拉刷新用 MJRefresh，由宿主链接，不在本二进制里。
 

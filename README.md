@@ -37,6 +37,8 @@ end
 
 `pod install` 后图片在 **`IMUIKit.bundle`**（`ToastSuccess`、`ToastFailure`、`ToastInfo`、`ToastLoading`、`ArrowLeft`、`Album`）。不要重命名。静态链接时库会先查类所在 bundle，再查主 bundle。
 
+页面基类和列表 cell / section 的 `deinit` 会在 `IMLogger.shared.enable == true` 时打日志。这段不靠编译期 `DEBUG`，Release 静态库里仍然在。
+
 依赖版本与打这个包时一致：IMBaseKit 0.1.0、ActiveLabel 1.1.0、Kingfisher 8.12.0、RxSwift / RxCocoa 6.9.0、SnapKit 5.7.1、Then 3.0.0、TZImagePickerController 3.8.12、MJRefresh 3.7.9。
 
 ## 宿主 Info.plist
